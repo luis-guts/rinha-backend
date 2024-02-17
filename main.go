@@ -6,9 +6,7 @@ import (
 
 func main() {
 	router := gin.Default()
-	router.GET("/healthcheck", func(ctx *gin.Context) {
-		ctx.JSON(200, "OK")
-	})
 	router.GET("/", get)
+	router.POST("/clientes/:id/transacoes", realizarTransacao)
 	router.Run(":3000")
 }
