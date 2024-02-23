@@ -13,3 +13,11 @@ func realizarTransacao(httpContext *gin.Context) {
 	}
 	httpContext.JSON(200, resultado)
 }
+
+func getExtrato(httpContext *gin.Context) {
+	resultado := ResultadoTransacao{
+		Limite: "10000",
+		Saldo:  "-9999",
+	}
+	httpContext.JSON(200, resultado)
+}

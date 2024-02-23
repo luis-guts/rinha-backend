@@ -1,0 +1,8 @@
+services:
+  postgres:
+    image: postgres
+    volumes:
+    environment:
+      POSTGRES_PASSWORD: "rinha2024q1!"
+    ports:
+      - "5432:5432"
