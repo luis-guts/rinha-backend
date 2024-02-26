@@ -4,6 +4,8 @@ import (
 	"database/sql"
 
 	_ "github.com/lib/pq"
+
+	"errors"
 )
 
 func OpenConn() (*sql.DB, error) {
@@ -27,6 +29,10 @@ func salvarTransacao(idCliente int64, transacao *Transacao) (*Cliente, error) {
 	err = row.Scan(&cliente.Id, &cliente.Limite, &cliente.SaldoInicial)
 	if err != nil {
 		return nil, err
+	}
+	var limiteTotalDisponivel = cliente.Limite + cliente.SaldoInicial
+	if limiteTotalDisponivel < transacao.Valor {
+		return nil, errors.New("saldo_insuficiente")
 	}
 	return cliente, nil
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
@@ -26,6 +27,16 @@ func realizarTransacao(httpContext *gin.Context) {
 	}
 	cliente, err := salvarTransacao(id, &transacao)
 	if err != nil {
+		if err == sql.ErrNoRows {
+			httpContext.Error(err)
+			httpContext.AbortWithStatus(404)
+			return
+		}
+		if err.Error() == ("saldo_insuficiente") {
+			httpContext.Error(err)
+			httpContext.AbortWithStatus(422)
+			return
+		}
 		httpContext.Error(err)
 		httpContext.AbortWithStatus(400)
 		return

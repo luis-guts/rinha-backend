@@ -1,9 +1,9 @@
 package main
 
 type Transacao struct {
-	Valor     int    `json:"valor"`
-	Tipo      string `json:"tipo"`
-	Descricao string `json:"descricao"`
+	Valor     float64 `json:"valor"`
+	Tipo      string  `json:"tipo"`
+	Descricao string  `json:"descricao"`
 }
 
 type ResultadoTransacao struct {

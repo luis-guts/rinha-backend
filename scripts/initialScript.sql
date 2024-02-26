@@ -5,8 +5,8 @@ CREATE DATABASE rinhabank;
 
 CREATE TABLE cliente (
     "id" SERIAL PRIMARY KEY,
-    "limite" NUMERIC(12,2),
-    "saldo_inicial" NUMERIC(12,2)
+    "limite" BIGINT,
+    "saldo_inicial" BIGINT
 );
 
 CREATE TABLE transacao(
